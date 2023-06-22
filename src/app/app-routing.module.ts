@@ -5,6 +5,7 @@ import { AddProduitComponent } from './add-produit/add-produit.component';
 import { UpdateProduitComponent } from './update-produit/update-produit.component';
 import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
+import { ListCategoriesComponent } from './list-categories/list-categories.component';
 
 const routes: Routes = [
   {path: "produits", component: ProduitsComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: "updateProduit/:id", component: UpdateProduitComponent},
   {path: "rechercheParCategorie", component : RechercheParCategorieComponent},
   {path: "rechercheParNom", component : RechercheParNomComponent},
+  {path: "listeCategories", component : ListCategoriesComponent},
   {path: "", redirectTo: "produits", pathMatch: "full"}
 ];
 

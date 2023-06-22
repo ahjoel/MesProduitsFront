@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { ListCategoriesComponent } from './list-categories/list-categories.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SearchFilterPipe } from './search-filter.pipe';
     UpdateProduitComponent,
     RechercheParCategorieComponent,
     RechercheParNomComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    ListCategoriesComponent
   ],
   imports: [
     BrowserModule,
