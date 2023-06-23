@@ -9,6 +9,7 @@ import { ProduitService } from '../services/produit.service';
 })
 export class ListCategoriesComponent implements OnInit {
   categories!: Categorie[];
+  updatedCat:Categorie = {"idCat":0, "nomCat": ""};
   constructor(private produitService: ProduitService) {}
   ngOnInit(): void {
     this.produitService.listeCategories().subscribe((cats) => {
