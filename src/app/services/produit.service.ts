@@ -53,4 +53,8 @@ export class ProduitService {
     const url = `${apiURL}/prodsByName/${nom}`;
     return this.http.get<Produit[]>(url);
   }
+
+  ajouterCategorie(cat: Categorie): Observable<Categorie> {
+    return this.http.post<Categorie>(apiURLCat, cat, httpOptions);
+  }
 }

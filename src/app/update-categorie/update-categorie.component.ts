@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Categorie } from '../model/categorie.model';
 
 @Component({
@@ -11,6 +11,13 @@ export class UpdateCategorieComponent implements OnInit {
   @Input()
   categorie!: Categorie;
 
+  @Input()
+  modeFormulaire!:boolean;
+
+  @Output()
+  categorieUpdated = new EventEmitter<Categorie>();
+
+
   constructor(){}
 
   ngOnInit(){
@@ -18,6 +25,7 @@ export class UpdateCategorieComponent implements OnInit {
   }
 
   saveCategorie(){
-
+    // Envoie de data @Output vers ListeCategorie
+    this.categorieUpdated.emit(this.categorie);
   }
 }

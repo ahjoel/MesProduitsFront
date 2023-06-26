@@ -13,6 +13,8 @@ import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.
 import { SearchFilterPipe } from './search-filter.pipe';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
 import { UpdateCategorieComponent } from './update-categorie/update-categorie.component';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { UpdateCategorieComponent } from './update-categorie/update-categorie.co
     RechercheParNomComponent,
     SearchFilterPipe,
     ListCategoriesComponent,
-    UpdateCategorieComponent
+    UpdateCategorieComponent,
+    LoginComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,

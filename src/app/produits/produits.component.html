@@ -8,7 +8,7 @@
                     <th>Prix</th>
                     <th>Catégorie</th>
                     <th>Date Création</th>
-                    <th>Action</th>
+                    <th *ngIf="authService.isAdmin()" >Action</th>
                 </tr>
                 <tbody *ngFor="let produit of produits">
                     <tr>
@@ -17,8 +17,8 @@
                         <td>{{produit.prixProduit}}</td>
                         <td>{{produit.categorie?.nomCat}}</td>
                         <td>{{produit.dateCreation | date: 'dd/MM/yyyy'}}</td>
-                        <td><a class="btn btn-danger" (click)="supprimerProduit(produit)">Supprimer</a></td>
-                        <td><a class="btn btn-success" [routerLink]="['/updateProduit',produit.idProduit]">Modifier</a></td>
+                        <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerProduit(produit)">Supprimer</a></td>
+                        <td><a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateProduit',produit.idProduit]">Modifier</a></td>
                     </tr>
                 </tbody>
             </table>

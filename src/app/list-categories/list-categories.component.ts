@@ -9,12 +9,28 @@ import { ProduitService } from '../services/produit.service';
 })
 export class ListCategoriesComponent implements OnInit {
   categories!: Categorie[];
-  updatedCat:Categorie = {"idCat":0, "nomCat": ""};
+  updatedCat: Categorie = { idCat: 0, nomCat: '' };
+  ajout:boolean=true;
   constructor(private produitService: ProduitService) {}
   ngOnInit(): void {
+    this.chargerCategories();
+  }
+  categorieUpdated(cat: Categorie) {
+    console.log('Objet Categorie reçu du composant updatedCategorie' + cat);
+    this.produitService
+      .ajouterCategorie(cat)
+      .subscribe(() => this.chargerCategories());
+  }
+
+  chargerCategories() {
     this.produitService.listeCategories().subscribe((cats) => {
       this.categories = cats._embedded.categories;
-      console.log(cats);
+      // console.log(cats);
     });
+  }
+
+  updateCat(cat: Categorie){
+    this.updatedCat = cat;
+    this.ajout=false;
   }
 }
