@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "@auth0/angular-jwt": "^5.1.2",
     "base64-js": "^1.5.1",
     "bootstrap": "^4.5.3",
     "ng2-search-filter": "^0.5.1",
