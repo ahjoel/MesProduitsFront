@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { apiURL, apiURLCat } from 'src/app/config';
 import { CategorieWrapper } from '../model/categorieWrapped.model';
+import { Image } from '../model/image.model';
 import { AuthService } from './auth.service';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -60,5 +61,17 @@ export class ProduitService {
 
   ajouterCategorie(cat: Categorie): Observable<Categorie> {
     return this.http.post<Categorie>(apiURLCat, cat, httpOptions);
+  }
+
+  uploadImage(file: File, filename: string): Observable<Image> {
+    const imageFormData = new FormData();
+    imageFormData.append('image', file, filename);
+    const url = `${apiURL + '/image/upload'}`;
+    return this.http.post<Image>(url, imageFormData);
+  }
+
+  loadImage(id: number): Observable<Image> {
+    const url = `${apiURL + '/image/get/info'}/${id}`;
+    return this.http.get<Image>(url);
   }
 }

@@ -3,11 +3,12 @@
         <div class="card-body">
             <table class="table table-striped">
                 <tr>
-                    <th>Id</th>
+                    <th>#</th>
                     <th>Nom</th>
                     <th>Prix</th>
                     <th>Catégorie</th>
                     <th>Date Création</th>
+                    <th>Image</th>
                     <th *ngIf="authService.isAdmin()" >Action</th>
                 </tr>
                 <tbody *ngFor="let produit of produits">
@@ -17,6 +18,7 @@
                         <td>{{produit.prixProduit}}</td>
                         <td>{{produit.categorie?.nomCat}}</td>
                         <td>{{produit.dateCreation | date: 'dd/MM/yyyy'}}</td>
+                        <td> <img class="card-img-top img-responsive" src="{{produit?.imageStr}}" alt="" style="height: 50px; width: 100px;"> </td>
                         <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerProduit(produit)">Supprimer</a></td>
                         <td><a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateProduit',produit.idProduit]">Modifier</a></td>
                     </tr>

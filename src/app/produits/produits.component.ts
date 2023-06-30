@@ -3,6 +3,7 @@ import { Produit } from '../model/produit.model';
 import { ProduitService } from '../services/produit.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Image } from '../model/image.model';
 
 @Component({
   selector: 'app-produits',
@@ -12,7 +13,11 @@ import { AuthService } from '../services/auth.service';
 export class ProduitsComponent implements OnInit {
   produits: Produit[];
 
-  constructor(private produitService: ProduitService, private router : Router, public authService : AuthService) {
+  constructor(
+    private produitService: ProduitService,
+    private router: Router,
+    public authService: AuthService
+  ) {
     // this.produits = this.produitService.listeProduit();
   }
 
@@ -21,7 +26,11 @@ export class ProduitsComponent implements OnInit {
   }
 
   supprimerProduit(p: Produit) {
-    let conf = confirm('Etes-vous sûr de vouloire supprimer '+p.nomProduit+ ' ? \nCette action est irréversible.');
+    let conf = confirm(
+      'Etes-vous sûr de vouloire supprimer ' +
+        p.nomProduit +
+        ' ? \nCette action est irréversible.'
+    );
     if (conf)
       this.produitService.supprimerProduit(p.idProduit).subscribe(() => {
         console.log('produit supprimé');
@@ -32,8 +41,17 @@ export class ProduitsComponent implements OnInit {
 
   chargerProduits() {
     this.produitService.listeProduit().subscribe((prods) => {
-      console.log(prods);
+      // console.log(prods);
       this.produits = prods;
+      console.log(this.produits);
+
+      this.produits.forEach((prod) => {
+        this.produitService
+          .loadImage(prod.image.idImage)
+          .subscribe((img: Image) => {
+            prod.imageStr = 'data:' + img.type + ';base64,' + img.image;
+          });
+      });
     });
   }
 }
