@@ -27,20 +27,20 @@ export class AddProduitComponent implements OnInit {
       console.log(cats);
     });
   }
-
   addProduit() {
-    this.produitService
-      .uploadImage(this.uploadedImage, this.uploadedImage.name)
-      .subscribe((img: Image) => {
-        this.newProduit.image = img;
-        this.newProduit.categorie = this.categories.find(
-          (cat) => cat.idCat == this.newIdCat
-        )!;
-
-        this.produitService.ajouterProduit(this.newProduit).subscribe(() => {
-          this.router.navigate(['produits']);
-        });
-      });
+    this.newProduit.categorie = this.categories.find(
+      (cat) => cat.idCat == this.newIdCat
+    )!;
+    this.produitService.ajouterProduit(this.newProduit).subscribe((prod) => {
+      this.produitService
+        .uploadImageFS(
+          this.uploadedImage,
+          this.uploadedImage.name,
+          prod.idProduit
+        )
+        .subscribe((response: any) => {});
+      this.router.navigate(['produits']);
+    });
   }
 
   onImageUpload(event: any) {

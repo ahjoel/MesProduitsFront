@@ -4,6 +4,7 @@ import { Produit } from 'src/app/model/produit.model';
 import { ProduitService } from '../services/produit.service';
 import { Categorie } from 'src/app/model/categorie.model';
 import { Image } from '../model/image.model';
+import { apiURL } from '../config';
 
 @Component({
   selector: 'app-update-produit',
@@ -17,6 +18,7 @@ export class UpdateProduitComponent implements OnInit {
   myImage!: string;
   uploadedImage!: File;
   isImageUpdated: Boolean = false;
+  apiurl = apiURL;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,7 +39,7 @@ export class UpdateProduitComponent implements OnInit {
         this.updatedCatId = this.currentProduit.categorie.idCat;
 
         this.produitService
-          .loadImage(this.currentProduit.image.idImage)
+          .loadImage(this.currentProduit.idProduit)
           .subscribe((img: Image) => {
             this.myImage = 'data:' + img.type + ';base64,' + img.image;
           });

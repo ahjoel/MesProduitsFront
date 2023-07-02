@@ -4,6 +4,7 @@ import { ProduitService } from '../services/produit.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Image } from '../model/image.model';
+import { apiURL } from '../config';
 
 @Component({
   selector: 'app-produits',
@@ -12,7 +13,7 @@ import { Image } from '../model/image.model';
 })
 export class ProduitsComponent implements OnInit {
   produits: Produit[];
-
+  apiurl = apiURL;
   constructor(
     private produitService: ProduitService,
     private router: Router,
@@ -39,19 +40,25 @@ export class ProduitsComponent implements OnInit {
       });
   }
 
+  // chargerProduits() {
+  //   this.produitService.listeProduit().subscribe((prods) => {
+  //     // console.log(prods);
+  //     this.produits = prods;
+  //     console.log(this.produits);
+
+  //     this.produits.forEach((prod) => {
+  //       this.produitService
+  //         .loadImage(prod.image.idImage)
+  //         .subscribe((img: Image) => {
+  //           prod.imageStr = 'data:' + img.type + ';base64,' + img.image;
+  //         });
+  //     });
+  //   });
+  // }
+
   chargerProduits() {
     this.produitService.listeProduit().subscribe((prods) => {
-      // console.log(prods);
       this.produits = prods;
-      console.log(this.produits);
-
-      this.produits.forEach((prod) => {
-        this.produitService
-          .loadImage(prod.image.idImage)
-          .subscribe((img: Image) => {
-            prod.imageStr = 'data:' + img.type + ';base64,' + img.image;
-          });
-      });
     });
   }
 }
