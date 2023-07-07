@@ -39,7 +39,7 @@ export class UpdateProduitComponent implements OnInit {
         this.updatedCatId = this.currentProduit.categorie.idCat;
 
         this.produitService
-          .loadImage(this.currentProduit.idProduit)
+          .loadImage(this.currentProduit.image.idImage)
           .subscribe((img: Image) => {
             this.myImage = 'data:' + img.type + ';base64,' + img.image;
           });

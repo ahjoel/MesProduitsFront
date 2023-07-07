@@ -40,25 +40,25 @@ export class ProduitsComponent implements OnInit {
       });
   }
 
-  // chargerProduits() {
-  //   this.produitService.listeProduit().subscribe((prods) => {
-  //     // console.log(prods);
-  //     this.produits = prods;
-  //     console.log(this.produits);
-
-  //     this.produits.forEach((prod) => {
-  //       this.produitService
-  //         .loadImage(prod.image.idImage)
-  //         .subscribe((img: Image) => {
-  //           prod.imageStr = 'data:' + img.type + ';base64,' + img.image;
-  //         });
-  //     });
-  //   });
-  // }
-
   chargerProduits() {
     this.produitService.listeProduit().subscribe((prods) => {
+      // console.log(prods);
       this.produits = prods;
+      console.log(this.produits);
+
+      this.produits.forEach((prod) => {
+        this.produitService
+          .loadImage(prod.image.idImage)
+          .subscribe((img: Image) => {
+            prod.imageStr = 'data:' + img.type + ';base64,' + img.image;
+          });
+      });
     });
   }
+
+  // chargerProduits() {
+  //   this.produitService.listeProduit().subscribe((prods) => {
+  //     this.produits = prods;
+  //   });
+  // }
 }

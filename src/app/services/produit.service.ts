@@ -71,7 +71,7 @@ export class ProduitService {
   }
 
   loadImage(id: number): Observable<Image> {
-    const url = `${apiURL + '/image/loadfromFS'}/${id}`;
+    const url = `${apiURL + '/image/get/info'}/${id}`;
     return this.http.get<Image>(url);
   }
 
